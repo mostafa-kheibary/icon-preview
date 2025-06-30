@@ -1,0 +1,63 @@
+<!-- Home.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+    <style type="text/css" media="screen">
+      *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      body {
+        background-color: #fff;
+        padding: 24px;
+      }
+      .container{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        max-width: 1400px;
+        margin:0 auto;
+        gap: 24px;
+      }
+      .svg-item{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: fit-content;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+      }
+      .svg-item .title{
+        font-size: 12px;
+      }
+      .svg-item .svg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        background-color: #fff;
+        border:1px solid #00000010;
+      }
+      .svg-item .svg svg{
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <% Object.keys(icons).forEach((iconName)=>{%>
+        <div class="svg-item">
+          <div class="svg"><%-icons[iconName]%></div>
+          <span class="title"><%=iconName%></span>
+        </div>
+      <%});%>
+    </ul>
+  </body>
+</html>
