@@ -33,7 +33,20 @@ app.get("/", (req, res) => {
   res.render("index", { icons: iconPath });
 });
 
-const PORT = 4000;
-app.listen(PORT);
+const startTheServer = (port) => {
+  try {
+    app
+      .listen(port)
+      .on("error", (e) => {
+        if (e.code === "EADDRINUSE") startTheServer(port + 1);
+      })
+      .on("listening", () => {
+        console.log(
+          `${process.argv[2]} is available at http://localhost:${port}`
+        );
+      });
+  } catch (error) {}
+};
 
-console.log(`preview of ${process.argv[2]} is available at localhost:${PORT}`);
+const DEFAULT_PORT = 4000;
+startTheServer(DEFAULT_PORT);
