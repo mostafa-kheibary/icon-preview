@@ -45,7 +45,7 @@
         width: 80px;
         height: 80px;
         border-radius: 8px;
-        background-color: #fff;
+        background: linear-gradient(45deg, white, #d8d8d8);
         border:1px solid #00000010;
       }
       .svg-item .svg svg{
@@ -58,7 +58,7 @@
   <body>
     <div class="container">
       <% icons.forEach((icon)=>{%>
-        <div id="svg-item" class="svg-item" title="<%= icon.fullPath %>" onclick="handleCopy()">
+        <div class="svg-item" title="<%= icon.fullPath %>">
           <div class="svg"><%-icon.content%></div>
           <span class="title"><%=icon.name%></span>
         </div>
@@ -66,10 +66,11 @@
     </ul>
 
     <script>
-      function handleCopy(){
-        const svgItem = document.getElementById("svg-item")
-        navigator.clipboard.writeText(svgItem.title)
-      }
+      document.querySelectorAll('.svg-item').forEach((item)=>{
+        item.addEventListener("click",()=>{
+          navigator.clipboard.writeText(item.title)
+        })
+      })
     </script>
   </body>
 </html>
