@@ -7,7 +7,7 @@ import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
-let iconPath = {};
+let iconPath = [];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -20,7 +20,7 @@ const processIconFiles = async () => {
       encoding: "utf8",
     });
     const name = file.split("/").at(-1);
-    iconPath[name] = content;
+    iconPath.push({ fullPath: file, name, content });
   }
 };
 

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home Page</title>
+    <title>Icons</title>
     <style type="text/css" media="screen">
       *{
         box-sizing: border-box;
@@ -29,6 +29,11 @@
         margin: 0 auto;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
+        transition: all 200ms ease;
+      }
+      .svg-item:active{
+        transform: scale(1.2);
       }
       .svg-item .title{
         font-size: 12px;
@@ -52,12 +57,19 @@
 
   <body>
     <div class="container">
-      <% Object.keys(icons).forEach((iconName)=>{%>
-        <div class="svg-item">
-          <div class="svg"><%-icons[iconName]%></div>
-          <span class="title"><%=iconName%></span>
+      <% icons.forEach((icon)=>{%>
+        <div id="svg-item" class="svg-item" title="<%= icon.fullPath %>" onclick="handleCopy()">
+          <div class="svg"><%-icon.content%></div>
+          <span class="title"><%=icon.name%></span>
         </div>
       <%});%>
     </ul>
+
+    <script>
+      function handleCopy(){
+        const svgItem = document.getElementById("svg-item")
+        navigator.clipboard.writeText(svgItem.title)
+      }
+    </script>
   </body>
 </html>
