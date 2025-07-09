@@ -1,0 +1,76 @@
+<!-- Home.ejs -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Icons</title>
+    <style type="text/css" media="screen">
+      *{
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      body {
+        background-color: #fff;
+        padding: 24px;
+      }
+      .container{
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+        max-width: 1400px;
+        margin:0 auto;
+        gap: 24px;
+      }
+      .svg-item{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: fit-content;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 200ms ease;
+      }
+      .svg-item:active{
+        transform: scale(1.2);
+      }
+      .svg-item .title{
+        font-size: 12px;
+      }
+      .svg-item .svg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        background: linear-gradient(45deg, white, #d8d8d8);
+        border:1px solid #00000010;
+      }
+      .svg-item .svg svg{
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <% icons.forEach((icon)=>{%>
+        <div class="svg-item" title="<%= icon.fullPath %>">
+          <div class="svg"><%-icon.content%></div>
+          <span class="title"><%=icon.name%></span>
+        </div>
+      <%});%>
+    </ul>
+
+    <script>
+      document.querySelectorAll('.svg-item').forEach((item)=>{
+        item.addEventListener("click",()=>{
+          navigator.clipboard.writeText(item.title)
+        })
+      })
+    </script>
+  </body>
+</html>
